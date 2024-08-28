@@ -6,6 +6,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.appy.ui.theme.screens.login.LoginScreen
 import com.example.appy.ui.theme.screens.signup.SignupScreen
 
 import com.example.sellapy.ui.theme.screens.Intent.IntentScreen
@@ -55,6 +56,9 @@ fun AppNavHost(
         }
         composable(ROUT_SIGNUP) {
             SignupScreen(navController = navController)
+        }
+        composable(ROUT_LOGIN) {
+            LoginScreen(navController = navController)
         }
 
 
