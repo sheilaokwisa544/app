@@ -63,7 +63,7 @@ fun HomeScreen(navController:NavController){
 
         Button(
             onClick = { navController.navigate(ROUT_DETAIL) },
-            colors = ButtonDefaults.buttonColors(Yellow)
+            colors = ButtonDefaults.buttonColors(Bluee)
         ) {
             Text(
                 text = "Get Started",

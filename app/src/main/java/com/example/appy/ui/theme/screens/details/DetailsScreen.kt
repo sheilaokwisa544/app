@@ -1,5 +1,6 @@
 package com.example.sellapy.ui.theme.screens.details
 
+import android.content.Intent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Box
@@ -41,11 +42,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Color.Companion.Yellow
 import androidx.compose.ui.layout.AlignmentLine
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.net.toUri
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.appy.R
@@ -56,6 +59,9 @@ import com.example.appy.ui.theme.ssss
 @Composable
 fun DetailsScreen(navController: NavController){
     Column(modifier = Modifier.fillMaxSize()) {
+
+
+        val mContext = LocalContext.current
 
         //TopAppBar
         TopAppBar(
@@ -144,6 +150,9 @@ fun DetailsScreen(navController: NavController){
 
 
         // card
+
+
+
 
 
         Row(modifier = Modifier.horizontalScroll(rememberScrollState())) {
@@ -268,8 +277,13 @@ fun DetailsScreen(navController: NavController){
                 Text(text = "Shop : SellAppy", fontSize = 20.sp)
                 Text(text = "Brand : Alison",fontSize = 20.sp)
                 Text(text = "location : Westlands",fontSize = 20.sp)
-                Button(onClick = { /*TODO*/ },
-                    colors = ButtonDefaults.buttonColors(Yellow),
+                Button(onClick = {
+
+                    val callIntent= Intent(Intent.ACTION_DIAL)
+                    callIntent.data="tel:0720245837".toUri()
+                    mContext.startActivity(callIntent)
+                },
+                    colors = ButtonDefaults.buttonColors(cccc),
                     shape = RoundedCornerShape(10.dp)
 
                     ) {

@@ -2,6 +2,7 @@ package com.example.sellapy.ui.theme.screens.dashboard
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -31,39 +32,44 @@ import androidx.navigation.compose.rememberNavController
 import com.example.appy.R
 import com.example.appy.ui.theme.cccc
 import com.example.appy.ui.theme.ssss
+import com.example.sellapy.navigation.ROUT_DETAIL
+import com.example.sellapy.navigation.ROUT_INTENT
 
 
 @Composable
-fun DashboardScreen(navController: NavController){
+fun DashboardScreen(navController: NavController) {
 
 
-    Column(modifier = Modifier
-        .fillMaxSize()
-        .background(ssss),
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(ssss),
         horizontalAlignment = Alignment.CenterHorizontally
 
-        ) {
+    ) {
         Spacer(modifier = Modifier.height(30.dp))
         Image(
-            painter = painterResource(id = R.drawable.img_6) ,
+            painter = painterResource(id = R.drawable.img_6),
             contentDescription = "product",
             modifier = Modifier.size(100.dp)
         )
         Spacer(modifier = Modifier.height(10.dp))
 
-        Text(text = "Your best online shop",
+        Text(
+            text = "Your best online shop",
             color = Color.White,
             fontWeight = FontWeight.SemiBold,
             fontSize = 18.sp,
 
 
-        )
+            )
         Spacer(modifier = Modifier.height(30.dp))
 
 
         // main card
 
         Column {
+
 
             // main card
 
@@ -85,19 +91,25 @@ fun DashboardScreen(navController: NavController){
                             .width(160.dp)
                             .height(180.dp)
                             .padding(10.dp)
-                        )
+                    )
 
 
                     {
-                       Box (modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center){
-                           Image(painter = painterResource(id = R.drawable.img_7),
-                               contentDescription ="",
-                               modifier = Modifier.size(130.dp)
-                           )
-                       }
+                        Box(
+                            modifier = Modifier.fillMaxWidth(),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Image(
+                                painter = painterResource(id = R.drawable.img_7),
+                                contentDescription = "",
+                                modifier = Modifier.size(130.dp)
+                            )
+                        }
                         Text(
                             text = "home",
-                            modifier = Modifier.fillMaxWidth(),
+                            modifier = Modifier.fillMaxWidth().clickable {
+                                navController.navigate(ROUT_DETAIL)},
+
                             textAlign = TextAlign.Center,
                             fontSize = 20.sp,
                             fontWeight = FontWeight.Bold
@@ -105,8 +117,7 @@ fun DashboardScreen(navController: NavController){
 
 
                     }
-                // end of card 1
-
+                    // end of card 1
 
 
                     Card(
@@ -118,9 +129,13 @@ fun DashboardScreen(navController: NavController){
 
 
                     {
-                        Box (modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center){
-                            Image(painter = painterResource(id = R.drawable.img_7),
-                                contentDescription ="",
+                        Box(
+                            modifier = Modifier.fillMaxWidth(),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Image(
+                                painter = painterResource(id = R.drawable.img_7),
+                                contentDescription = "",
                                 modifier = Modifier.size(130.dp)
                             )
                         }
@@ -138,35 +153,170 @@ fun DashboardScreen(navController: NavController){
                 }
 
 
-
-
-
-                    
-                }
                 // end of row
+
+
+                // row2
+                Row(modifier = Modifier.padding(20.dp)) {
+
+                    // card 1
+                    Card(
+                        modifier = Modifier
+                            .width(160.dp)
+                            .height(180.dp)
+                            .padding(10.dp)
+                    )
+
+
+                    {
+                        Box(
+                            modifier = Modifier.fillMaxWidth(),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Image(
+                                painter = painterResource(id = R.drawable.img_10),
+                                contentDescription = "",
+                                modifier = Modifier.size(130.dp)
+                            )
+                        }
+                        Text(
+                            text = "settings",
+                            modifier = Modifier.fillMaxWidth().clickable {
+                                navController.navigate(
+                                    ROUT_DETAIL
+                                )
+                            },
+                            textAlign = TextAlign.Center,
+                            fontSize = 20.sp,
+                            fontWeight = FontWeight.Bold
+                        )
+
+
+                    }
+                    // end of card 1
+
+
+                    Card(
+                        modifier = Modifier
+                            .width(160.dp)
+                            .height(180.dp)
+                            .padding(10.dp)
+                    )
+
+
+                    {
+                        Box(
+                            modifier = Modifier.fillMaxWidth(),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Image(
+                                painter = painterResource(id = R.drawable.img_8),
+                                contentDescription = "",
+                                modifier = Modifier.size(130.dp)
+                            )
+                        }
+                        Text(
+                            text = "message",
+                            modifier = Modifier.fillMaxWidth(),
+                            textAlign = TextAlign.Center,
+                            fontSize = 20.sp,
+                            fontWeight = FontWeight.Bold
+                        )
+
+
+                    }
+
+                }
+
+
+                // end of row
+
+
+
+                // row 3
+                Row(modifier = Modifier.padding(20.dp)) {
+
+                    // card 1
+                    Card(
+                        modifier = Modifier
+                            .width(160.dp)
+                            .height(180.dp)
+                            .padding(10.dp)
+                    )
+
+
+                    {
+                        Box(
+                            modifier = Modifier.fillMaxWidth(),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Image(
+                                painter = painterResource(id = R.drawable.img_9),
+                                contentDescription = "",
+                                modifier = Modifier.size(130.dp)
+                            )
+                        }
+                        Text(
+                            text = "intent",
+                            modifier = Modifier.fillMaxWidth().clickable {
+                                navController.navigate(
+                                    ROUT_INTENT
+                                )
+                            },
+                            textAlign = TextAlign.Center,
+                            fontSize = 20.sp,
+                            fontWeight = FontWeight.Bold
+                        )
+
+
+                    }
+                    // end of card 1
+
+
+                    Card(
+                        modifier = Modifier
+                            .width(160.dp)
+                            .height(180.dp)
+                            .padding(10.dp)
+                    )
+
+
+                    {
+                        Box(
+                            modifier = Modifier.fillMaxWidth(),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Image(
+                                painter = painterResource(id = R.drawable.img_8),
+                                contentDescription = "",
+                                modifier = Modifier.size(130.dp)
+                            )
+                        }
+                        Text(
+                            text = "message",
+                            modifier = Modifier.fillMaxWidth(),
+                            textAlign = TextAlign.Center,
+                            fontSize = 20.sp,
+                            fontWeight = FontWeight.Bold
+                        )
+
+
+                    }
+
+                }
+
+
+                // end of row
+
+
             }
+
+
         }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
-
-
-
-
+}
 
 
 
