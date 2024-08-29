@@ -11,7 +11,9 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Lock
@@ -33,6 +35,7 @@ import androidx.compose.ui.graphics.Color.Companion.Blue
 import androidx.compose.ui.graphics.Color.Companion.Magenta
 import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.input.KeyboardType
@@ -47,6 +50,7 @@ import com.example.appy.R
 import com.example.appy.ui.theme.Bluee
 import com.example.appy.ui.theme.cccc
 import com.example.appy.ui.theme.ssss
+import com.example.sellapy.data.AuthViewModel
 import com.example.sellapy.navigation.ROUT_SIGNUP
 
 
@@ -56,6 +60,7 @@ fun LoginScreen(navController: NavController){
     Column (
         modifier = Modifier
             .fillMaxSize()
+            .verticalScroll(rememberScrollState())
             .paint(painterResource(id = R.drawable.img_20), contentScale = ContentScale.FillBounds),
         horizontalAlignment = Alignment.CenterHorizontally,
 
@@ -128,10 +133,15 @@ fun LoginScreen(navController: NavController){
 
         // row
 
+        val context = LocalContext.current
+        val authViewModel = AuthViewModel(navController, context)
+
         Row {
                     // button user
             Button(
-                onClick = { },
+                onClick = {
+                     authViewModel.login(email, password)
+                },
                 colors = ButtonDefaults.buttonColors(Bluee)
             ) {
                 Text(
@@ -145,7 +155,10 @@ fun LoginScreen(navController: NavController){
 
                     // button admin
             Button(
-                onClick = { },
+                onClick = {
+
+                     authViewModel.adminlogin(email, password)
+                },
                 colors = ButtonDefaults.buttonColors(Bluee)
             ) {
                 Text(
@@ -180,3 +193,20 @@ fun LoginScreen(navController: NavController){
 fun LoginScreenPreview(){
     LoginScreen(rememberNavController())
 }
+
+
+// login into firebase and create account
+// connect to your project and authenticate
+// in your project com.example create two packages data and models
+// inside models create a kotlin class called User
+// use the codes from the User
+// create another kotlin class inside data that will carry functions
+// go to sign up button for login
+// stand on onclick..
+// on top of your button paste..
+//val context = LocalContext.current
+//val authViewModel = AuthViewModel(navController, context)
+// inside onclick paste..
+// { authViewModel.signup(name, email, password,confpassword) },
+// do the same for all buttons
+// in your login file.. login as a user.. do the same process

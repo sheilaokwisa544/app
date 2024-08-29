@@ -13,7 +13,9 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
@@ -34,6 +36,9 @@ import com.example.appy.ui.theme.cccc
 import com.example.appy.ui.theme.ssss
 import com.example.sellapy.navigation.ROUT_DETAIL
 import com.example.sellapy.navigation.ROUT_INTENT
+import com.example.sellapy.navigation.ROUT_LOGIN
+import com.example.sellapy.navigation.ROUT_SIGNUP
+import com.example.sellapy.navigation.ROUT_SPLASH
 
 
 @Composable
@@ -43,7 +48,8 @@ fun DashboardScreen(navController: NavController) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(ssss),
+            .background(ssss)
+            .verticalScroll(rememberScrollState()),
         horizontalAlignment = Alignment.CenterHorizontally
 
     ) {
@@ -107,8 +113,11 @@ fun DashboardScreen(navController: NavController) {
                         }
                         Text(
                             text = "home",
-                            modifier = Modifier.fillMaxWidth().clickable {
-                                navController.navigate(ROUT_DETAIL)},
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .clickable {
+                                    navController.navigate(ROUT_DETAIL)
+                                },
 
                             textAlign = TextAlign.Center,
                             fontSize = 20.sp,
@@ -141,10 +150,14 @@ fun DashboardScreen(navController: NavController) {
                         }
                         Text(
                             text = "home",
-                            modifier = Modifier.fillMaxWidth(),
+                            modifier = Modifier.fillMaxWidth().clickable {
+                                navController.navigate(
+                                    ROUT_LOGIN
+                                )},
                             textAlign = TextAlign.Center,
                             fontSize = 20.sp,
-                            fontWeight = FontWeight.Bold
+                            fontWeight = FontWeight.Bold,
+
                         )
 
 
@@ -181,11 +194,13 @@ fun DashboardScreen(navController: NavController) {
                         }
                         Text(
                             text = "settings",
-                            modifier = Modifier.fillMaxWidth().clickable {
-                                navController.navigate(
-                                    ROUT_DETAIL
-                                )
-                            },
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .clickable {
+                                    navController.navigate(
+                                        ROUT_DETAIL
+                                    )
+                                },
                             textAlign = TextAlign.Center,
                             fontSize = 20.sp,
                             fontWeight = FontWeight.Bold
@@ -217,7 +232,10 @@ fun DashboardScreen(navController: NavController) {
                         }
                         Text(
                             text = "message",
-                            modifier = Modifier.fillMaxWidth(),
+                            modifier = Modifier.fillMaxWidth().clickable {
+                                navController.navigate(
+                                    ROUT_SIGNUP
+                                )},
                             textAlign = TextAlign.Center,
                             fontSize = 20.sp,
                             fontWeight = FontWeight.Bold
@@ -258,11 +276,13 @@ fun DashboardScreen(navController: NavController) {
                         }
                         Text(
                             text = "intent",
-                            modifier = Modifier.fillMaxWidth().clickable {
-                                navController.navigate(
-                                    ROUT_INTENT
-                                )
-                            },
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .clickable {
+                                    navController.navigate(
+                                        ROUT_INTENT
+                                    )
+                                },
                             textAlign = TextAlign.Center,
                             fontSize = 20.sp,
                             fontWeight = FontWeight.Bold
@@ -294,7 +314,10 @@ fun DashboardScreen(navController: NavController) {
                         }
                         Text(
                             text = "message",
-                            modifier = Modifier.fillMaxWidth(),
+                            modifier = Modifier.fillMaxWidth().clickable {
+                                navController.navigate(
+                                    ROUT_SPLASH
+                                )},
                             textAlign = TextAlign.Center,
                             fontSize = 20.sp,
                             fontWeight = FontWeight.Bold

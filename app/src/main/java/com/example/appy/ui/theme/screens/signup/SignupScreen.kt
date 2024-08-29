@@ -8,7 +8,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Lock
@@ -31,6 +33,7 @@ import androidx.compose.ui.graphics.Color.Companion.Red
 import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.graphics.Color.Companion.Yellow
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.input.KeyboardType
@@ -43,7 +46,9 @@ import androidx.navigation.compose.rememberNavController
 import com.example.appy.R
 import com.example.appy.ui.theme.Bluee
 import com.example.appy.ui.theme.cccc
+import com.example.sellapy.data.AuthViewModel
 import com.example.sellapy.navigation.ROUT_DETAIL
+import com.example.sellapy.navigation.ROUT_LOGIN
 
 
 @Composable
@@ -53,6 +58,7 @@ fun SignupScreen(navController: NavController){
 
         modifier = Modifier
             .paint(painterResource(id = R.drawable.img_20), contentScale = ContentScale.FillBounds)
+            .verticalScroll(rememberScrollState())
             .fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally
 
@@ -154,8 +160,14 @@ fun SignupScreen(navController: NavController){
         )
         Spacer(modifier = Modifier.height(10.dp))
 
+
+
+        val context = LocalContext.current
+        val authViewModel = AuthViewModel(navController, context)
         Button(
-            onClick = { },
+            onClick = {
+                authViewModel.signup(name, email, password,confpassword)
+                      },
             colors = ButtonDefaults.buttonColors(Bluee)
         ) {
             Text(
@@ -166,12 +178,16 @@ fun SignupScreen(navController: NavController){
 
         Spacer(modifier = Modifier.height(10.dp))
 
-        Text(
-            text = "Already have an account? Login",
-            fontSize = 20.sp,
-            fontFamily = FontFamily.SansSerif,
-            color = cccc
-        )
+        Button(onClick = {navController.navigate(ROUT_LOGIN) }) {
+            Text(
+                text = "Already have an account? Login",
+                fontSize = 20.sp,
+                fontFamily = FontFamily.SansSerif,
+                color = cccc,
+
+                )
+            
+        }
 
 
 
