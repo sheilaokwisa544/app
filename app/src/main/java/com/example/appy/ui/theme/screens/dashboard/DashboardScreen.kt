@@ -112,7 +112,7 @@ fun DashboardScreen(navController: NavController) {
                             )
                         }
                         Text(
-                            text = "home",
+                            text = "detail",
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .clickable {
@@ -149,7 +149,7 @@ fun DashboardScreen(navController: NavController) {
                             )
                         }
                         Text(
-                            text = "home",
+                            text = "login",
                             modifier = Modifier.fillMaxWidth().clickable {
                                 navController.navigate(
                                     ROUT_LOGIN
@@ -231,7 +231,7 @@ fun DashboardScreen(navController: NavController) {
                             )
                         }
                         Text(
-                            text = "message",
+                            text = "signup",
                             modifier = Modifier.fillMaxWidth().clickable {
                                 navController.navigate(
                                     ROUT_SIGNUP

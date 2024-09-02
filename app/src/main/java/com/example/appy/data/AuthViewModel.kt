@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import com.example.sellapy.models.User
+import com.example.sellapy.navigation.ADD_PRODUCTS_URL
 import com.example.sellapy.navigation.ROUT_DASHBOARD
 import com.example.sellapy.navigation.ROUT_HOME
 import com.example.sellapy.navigation.ROUT_INTENT
@@ -15,7 +16,7 @@ import com.example.sellapy.navigation.ROUT_SIGNUP
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
-
+// link btwn backend and front end
 class AuthViewModel(var navController: NavController, var context: Context){
     val mAuth: FirebaseAuth
     val progress: ProgressDialog
@@ -64,7 +65,7 @@ class AuthViewModel(var navController: NavController, var context: Context){
         if (email.isBlank() || password.isBlank()){
             Toast.makeText(context,"Please email and password cannot be blank", Toast.LENGTH_LONG).show()
         }
-        else if (email == "admin@gmail.com" && password == "123456"){
+        else if (email == "sheilaokwisa18@gmail.com" && password == "123456"){
             navController.navigate(ROUT_LOGIN)
         }
         else {
@@ -90,7 +91,7 @@ class AuthViewModel(var navController: NavController, var context: Context){
             mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
                 if (it.isSuccessful ){
                     Toast.makeText(this.context, "Success", Toast.LENGTH_SHORT).show()
-                    navController.navigate(ROUT_INTENT)
+                    navController.navigate(ADD_PRODUCTS_URL)
                 }else{
                     Toast.makeText(this.context, "Error", Toast.LENGTH_SHORT).show()
                 }

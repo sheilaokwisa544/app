@@ -7,6 +7,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.appy.ui.theme.screens.login.LoginScreen
+import com.example.appy.ui.theme.screens.products.AddProductsScreen
+import com.example.appy.ui.theme.screens.products.ViewProductsScreen
 import com.example.appy.ui.theme.screens.signup.SignupScreen
 
 import com.example.sellapy.ui.theme.screens.Intent.IntentScreen
@@ -59,6 +61,12 @@ fun AppNavHost(
         }
         composable(ROUT_LOGIN) {
             LoginScreen(navController = navController)
+        }
+        composable(ADD_PRODUCTS_URL) {
+            AddProductsScreen(navController = navController)
+        }
+        composable(VIEW_PRODUCTS_URL) {
+            ViewProductsScreen(navController = navController)
         }
 
 
