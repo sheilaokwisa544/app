@@ -34,6 +34,8 @@ import androidx.navigation.compose.rememberNavController
 import com.example.appy.R
 import com.example.appy.ui.theme.cccc
 import com.example.appy.ui.theme.ssss
+import com.example.sellapy.navigation.ADD_PRODUCTS_URL
+import com.example.sellapy.navigation.ROUT_ABOUT
 import com.example.sellapy.navigation.ROUT_DETAIL
 import com.example.sellapy.navigation.ROUT_INTENT
 import com.example.sellapy.navigation.ROUT_LOGIN
@@ -313,10 +315,11 @@ fun DashboardScreen(navController: NavController) {
                             )
                         }
                         Text(
-                            text = "message",
+                            text = "product",
                             modifier = Modifier.fillMaxWidth().clickable {
                                 navController.navigate(
-                                    ROUT_SPLASH
+                                    ADD_PRODUCTS_URL
+
                                 )},
                             textAlign = TextAlign.Center,
                             fontSize = 20.sp,
