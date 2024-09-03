@@ -9,7 +9,7 @@ import android.widget.Toast
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.navigation.NavController
-import com.example.appy.models.Product
+
 import com.example.appy.models.Student
 import com.example.sellapy.data.AuthViewModel
 import com.example.sellapy.navigation.ADD_PRODUCTS_URL

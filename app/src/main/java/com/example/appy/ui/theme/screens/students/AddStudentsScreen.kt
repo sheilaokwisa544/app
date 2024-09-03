@@ -1,4 +1,6 @@
-package com.example.appy.ui.theme.screens.products
+package com.example.appy.ui.theme.screens.students
+
+
 
 
 
@@ -65,6 +67,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.paint
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.asImageBitmap
@@ -73,6 +76,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
@@ -82,19 +86,23 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.unit.toSize
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.example.appy.R
 import com.example.appy.data.ProductViewModel
+import com.example.appy.data.StudentViewModel
+import com.example.appy.models.Student
 import com.example.sellapy.navigation.ADD_PRODUCTS_URL
 
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AddProductsScreen(navController:NavHostController){
+fun AddStudentsScreen(navController:NavHostController){
     Column(
         modifier = Modifier
             .fillMaxSize()
         ,
         horizontalAlignment = Alignment.CenterHorizontally
+
     ) {
 
         var selected by remember { mutableIntStateOf(0) }
@@ -158,6 +166,7 @@ fun AddProductsScreen(navController:NavHostController){
                     modifier = Modifier
                         .fillMaxSize()
                         .verticalScroll(rememberScrollState())
+
                     ,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ){
@@ -171,17 +180,16 @@ fun AddProductsScreen(navController:NavHostController){
                         fontWeight = FontWeight.Bold,
                         fontFamily = FontFamily.SansSerif)
 
-                    var productName by remember { mutableStateOf("") }
-                    var productPrice by remember { mutableStateOf("") }
-                    var phone by remember { mutableStateOf("") }
+                    var studentName by remember { mutableStateOf("") }
+                    var email by remember { mutableStateOf("") }
                     val context = LocalContext.current
 
                     Spacer(modifier = Modifier.height(10.dp))
 
                     OutlinedTextField(
-                        value = productName,
-                        onValueChange = { productName = it },
-                        label = { Text(text = "Product name ") },
+                        value = studentName,
+                        onValueChange = { studentName = it },
+                        label = { Text(text = "Student's name ") },
                         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
                         modifier = Modifier.fillMaxWidth().padding(start = 20.dp, end = 20.dp),
                     )
@@ -192,21 +200,21 @@ fun AddProductsScreen(navController:NavHostController){
 
                     // Start of Text Field with a dropdown
                     var mExpanded by remember { mutableStateOf(false) }
-                    val options = listOf("250g", "500g", "1 kg")
-                    var productQuantity by remember { mutableStateOf("") }
+                    val options = listOf("18-21yrs", "21-18yrs", "28-35yrs")
+                    var age by remember { mutableStateOf("") }
                     var mTextFieldSize by remember { mutableStateOf(Size.Zero)}
                     val icon = if (mExpanded) Icons.Filled.KeyboardArrowUp else Icons.Filled.KeyboardArrowDown
 
                     Column(Modifier.padding(20.dp)) {
                         OutlinedTextField(
-                            value = productQuantity,
-                            onValueChange = { productQuantity = it },
+                            value = age,
+                            onValueChange = { age = it },
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .onGloballyPositioned { coordinates ->
                                     mTextFieldSize = coordinates.size.toSize()
                                 },
-                            label = {Text("Choose product quantity")},
+                            label = {Text("Choose age-group")},
                             trailingIcon = {
                                 Icon(icon,"contentDescription",
                                     Modifier.clickable { mExpanded = !mExpanded })
@@ -222,7 +230,7 @@ fun AddProductsScreen(navController:NavHostController){
                                     label -> DropdownMenuItem(
                                 text = { Text(text = label)},
                                 onClick = {
-                                  productQuantity = label
+                                   age= label
                                     mExpanded = false
                                 })
 
@@ -239,31 +247,22 @@ fun AddProductsScreen(navController:NavHostController){
                     Spacer(modifier = Modifier.height(10.dp))
 
                     OutlinedTextField(
-                        value = productPrice,
-                        onValueChange = { productPrice = it },
-                        label = { Text(text = "Product price e.g Ksh.500") },
+                        value = email   ,
+                        onValueChange = {email = it },
+                        label = { Text(text = "email address e.g abc@gmail.com") },
                         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
                         modifier = Modifier.fillMaxWidth().padding(start = 20.dp, end = 20.dp),
                     )
 
                     Spacer(modifier = Modifier.height(20.dp))
 
-                    OutlinedTextField(
-                        value = phone,
-                        onValueChange = { phone = it },
-                        label = { Text(text = "Phone") },
-                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
-                        modifier = Modifier.fillMaxWidth().padding(start = 20.dp, end = 20.dp),
-                    )
-
-                    Spacer(modifier = Modifier.height(20.dp))
 
 
 
                     //---------------------IMAGE PICKER START-----------------------------------//
 
                     var modifier = Modifier
-                    ImagePicker(modifier,context, navController, productName.trim(), productQuantity.trim(), productPrice.trim(),phone.trim())
+                    ImagePicker(modifier,context, navController, studentName.trim(), email.trim(), age.trim(),)
 
                     //---------------------IMAGE PICKER END-----------------------------------//
 
@@ -302,7 +301,7 @@ val bottomNavItems = listOf(
         badges=2
     )
 
-    )
+)
 
 
 
@@ -320,7 +319,7 @@ data class BottomNavItem(
 
 
 @Composable
-fun ImagePicker(modifier: Modifier = Modifier, context: Context,navController: NavHostController, name:String, quantity:String, price:String,phone:String) {
+fun ImagePicker(modifier: Modifier = Modifier, context: Context,navController: NavHostController, name:String, age:String, email:String,) {
     var hasImage by remember { mutableStateOf(false) }
     var imageUri by remember { mutableStateOf<Uri?>(null) }
 
@@ -341,6 +340,7 @@ fun ImagePicker(modifier: Modifier = Modifier, context: Context,navController: N
                     contentDescription = "Selected image",
                     modifier = Modifier
                         .size(100.dp)
+
                         .clip(CircleShape),
                     contentScale = ContentScale.Crop)
             }
@@ -355,6 +355,7 @@ fun ImagePicker(modifier: Modifier = Modifier, context: Context,navController: N
                 },
                 shape = RoundedCornerShape(5.dp),
                 colors = ButtonDefaults.buttonColors(Color.Gray)
+
             ) {
                 Text(
                     text = "Select Image"
@@ -365,14 +366,14 @@ fun ImagePicker(modifier: Modifier = Modifier, context: Context,navController: N
 
             Button(onClick = {
                 //-----------WRITE THE UPLOAD LOGIC HERE---------------//
-                var productRepository = ProductViewModel(navController,context)
-                productRepository.uploadProduct(name, quantity, price,phone,imageUri!!)
+                var studentRepository = StudentViewModel(navController,context)
+                studentRepository.uploadStudent(name, email, age ,imageUri!!)
 
 
             },
                 shape = RoundedCornerShape(5.dp),
                 colors = ButtonDefaults.buttonColors(Color.Gray)) {
-                Text(text = "Upload")
+                Text(text = "Register student")
             }
         }
     }
@@ -380,8 +381,8 @@ fun ImagePicker(modifier: Modifier = Modifier, context: Context,navController: N
 
 @Composable
 @Preview(showBackground = true)
-fun AddProductsScreenPreview(){
-    AddProductsScreen(navController = rememberNavController())
+fun AddStudentsScreenPreview(){
+    AddStudentsScreen(navController = rememberNavController())
 
 }
 
