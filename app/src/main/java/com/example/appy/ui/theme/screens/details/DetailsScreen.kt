@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Menu
@@ -58,14 +59,22 @@ import com.example.appy.ui.theme.ssss
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DetailsScreen(navController: NavController){
-    Column(modifier = Modifier.fillMaxSize()) {
+    Column(modifier = Modifier
+        .fillMaxSize()
+        .horizontalScroll(rememberScrollState())
+        .verticalScroll(rememberScrollState())
+
+    )
+
+
+    {
 
 
         val mContext = LocalContext.current
 
         //TopAppBar
         TopAppBar(
-            title = { Text(text = "SellApy", color = Color.White) },
+            title = { Text(text = "SellApy Details", color = Color.White) },
             colors = TopAppBarDefaults.mediumTopAppBarColors(Bluee),
             navigationIcon = {
                 IconButton(onClick = { /*TODO*/ }) {

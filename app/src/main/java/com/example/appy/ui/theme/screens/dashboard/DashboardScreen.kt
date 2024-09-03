@@ -3,6 +3,7 @@ package com.example.sellapy.ui.theme.screens.dashboard
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -51,7 +52,8 @@ fun DashboardScreen(navController: NavController) {
         modifier = Modifier
             .fillMaxSize()
             .background(ssss)
-            .verticalScroll(rememberScrollState()),
+            .verticalScroll(rememberScrollState())
+            .horizontalScroll(rememberScrollState()),
         horizontalAlignment = Alignment.CenterHorizontally
 
     ) {
@@ -108,7 +110,7 @@ fun DashboardScreen(navController: NavController) {
                             contentAlignment = Alignment.Center
                         ) {
                             Image(
-                                painter = painterResource(id = R.drawable.img_7),
+                                painter = painterResource(id = R.drawable.img_26),
                                 contentDescription = "",
                                 modifier = Modifier.size(130.dp)
                             )
@@ -145,17 +147,20 @@ fun DashboardScreen(navController: NavController) {
                             contentAlignment = Alignment.Center
                         ) {
                             Image(
-                                painter = painterResource(id = R.drawable.img_7),
+                                painter = painterResource(id = R.drawable.img_23),
                                 contentDescription = "",
                                 modifier = Modifier.size(130.dp)
                             )
                         }
                         Text(
                             text = "login",
-                            modifier = Modifier.fillMaxWidth().clickable {
-                                navController.navigate(
-                                    ROUT_LOGIN
-                                )},
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .clickable {
+                                    navController.navigate(
+                                        ROUT_LOGIN
+                                    )
+                                },
                             textAlign = TextAlign.Center,
                             fontSize = 20.sp,
                             fontWeight = FontWeight.Bold,
@@ -189,7 +194,7 @@ fun DashboardScreen(navController: NavController) {
                             contentAlignment = Alignment.Center
                         ) {
                             Image(
-                                painter = painterResource(id = R.drawable.img_10),
+                                painter = painterResource(id = R.drawable.img_21),
                                 contentDescription = "",
                                 modifier = Modifier.size(130.dp)
                             )
@@ -227,17 +232,20 @@ fun DashboardScreen(navController: NavController) {
                             contentAlignment = Alignment.Center
                         ) {
                             Image(
-                                painter = painterResource(id = R.drawable.img_8),
+                                painter = painterResource(id = R.drawable.img_22),
                                 contentDescription = "",
                                 modifier = Modifier.size(130.dp)
                             )
                         }
                         Text(
                             text = "signup",
-                            modifier = Modifier.fillMaxWidth().clickable {
-                                navController.navigate(
-                                    ROUT_SIGNUP
-                                )},
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .clickable {
+                                    navController.navigate(
+                                        ROUT_SIGNUP
+                                    )
+                                },
                             textAlign = TextAlign.Center,
                             fontSize = 20.sp,
                             fontWeight = FontWeight.Bold
@@ -271,7 +279,7 @@ fun DashboardScreen(navController: NavController) {
                             contentAlignment = Alignment.Center
                         ) {
                             Image(
-                                painter = painterResource(id = R.drawable.img_9),
+                                painter = painterResource(id = R.drawable.img_24),
                                 contentDescription = "",
                                 modifier = Modifier.size(130.dp)
                             )
@@ -309,18 +317,21 @@ fun DashboardScreen(navController: NavController) {
                             contentAlignment = Alignment.Center
                         ) {
                             Image(
-                                painter = painterResource(id = R.drawable.img_8),
+                                painter = painterResource(id = R.drawable.img_25),
                                 contentDescription = "",
                                 modifier = Modifier.size(130.dp)
                             )
                         }
                         Text(
                             text = "product",
-                            modifier = Modifier.fillMaxWidth().clickable {
-                                navController.navigate(
-                                    ADD_PRODUCTS_URL
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .clickable {
+                                    navController.navigate(
+                                        ADD_PRODUCTS_URL
 
-                                )},
+                                    )
+                                },
                             textAlign = TextAlign.Center,
                             fontSize = 20.sp,
                             fontWeight = FontWeight.Bold

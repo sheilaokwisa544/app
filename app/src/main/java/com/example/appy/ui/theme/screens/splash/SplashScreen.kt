@@ -114,7 +114,7 @@ fun SplashScreen(navController: NavController){
                 Spacer(modifier = Modifier.height(15.dp))
 
                 Button(
-                    onClick = { navController.navigate(ROUT_DETAIL) },
+                    onClick = { navController.navigate(ROUT_DASHBOARD) },
                     colors = ButtonDefaults.buttonColors(cccc),
                     modifier = Modifier
                         .fillMaxWidth()
